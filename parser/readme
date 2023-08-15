@@ -1,0 +1,16 @@
+To execute and test the parser, we have 3 steps:
+
+ 1. Creation:
+	To create the required files you can type: 
+		make create
+		
+ 2. Test
+	To test the scanner with some input files, you can type: 
+		make test filename=["test0.txt"|"test1.txt"|"test2.txt"|"test3.txt"|"test4.txt"]
+		e.g. make test filename="test2.txt"
+	Each of the five test files are in the testfiles directory. 
+	After executing this instruction, the program will print the scanner results for each file
+	
+ 3. Cleaning
+	Finally, if you want to erase the created files in step 1, you can type:
+		make clean	
