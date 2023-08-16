@@ -27,6 +27,9 @@ public class Main{
   static public void main(String[] args) {    
     /* Start the parser */
     try {
+        System.out.println("Line\tColumn\tToken\tValue");
+        System.out.println("====================================================");
+
         Lexer.main(args);
     } catch (Exception e) {
       /* do cleanup here -- possibly rethrow e */

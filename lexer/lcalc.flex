@@ -84,6 +84,22 @@ import java_cup.runtime.*;
     private Symbol symbol(int type, Object value) {
         return new Symbol(type, yyline, yycolumn, value);
     }
+
+    private void prinToken1(String token)
+	{
+		int l=yyline+1;
+		int c=yycolumn+1;
+		System.out.println(l+"\t"+c+"\t"+token);
+	}
+
+    private void prinToken2(String token)
+	{
+		int l=yyline+1;
+		int c=yycolumn+1;
+		System.out.println(l+"\t"+c+"\t"+token+"\t"+yytext());
+	}
+
+
 %}
    
 
@@ -137,24 +153,24 @@ dec_int_id = [A-Za-z_][A-Za-z_0-9]*
    
     /* Print the token found that was declared in the class sym and then
        return it. */
-    "+"                { System.out.print(" + "); return symbol(PLUS); }
-    "-"                { System.out.print(" - "); return symbol(MINUS); }
-    "*"                { System.out.print(" * "); return symbol(TIMES); }
-    "/"                { System.out.print(" / "); return symbol(DIVIDE); }
-    "("                { System.out.print(" ( "); return symbol(LPAREN); }
-    ")"                { System.out.print(" ) "); return symbol(RPAREN); }
+    "+"                { prinToken1(" + "); return symbol(PLUS); }
+    "-"                { prinToken1(" - "); return symbol(MINUS); }
+    "*"                { prinToken1(" * "); return symbol(TIMES); }
+    "/"                { prinToken1(" / "); return symbol(DIVIDE); }
+    "("                { prinToken1(" ( "); return symbol(LPAREN); }
+    ")"                { prinToken1(" ) "); return symbol(RPAREN); }
    
     /* If an integer is found print it out, return the token NUMBER
        that represents an integer and the value of the integer that is
        held in the string yytext which will get turned into an integer
        before returning */
-    {dec_int_lit}      { System.out.print(yytext());
+    {dec_int_lit}      { prinToken2("NUMBER");
                          return symbol(NUMBER, new Integer(yytext())); }
    
     /* If an identifier is found print it out, return the token ID
        that represents an identifier and the default value one that is
        given to all identifiers. */
-    {dec_int_id}       { System.out.print(yytext());
+    {dec_int_id}       { prinToken2("ID");
                          return symbol(ID, new Integer(1));}
    
     /* Don't do anything if whitespace is found */
@@ -164,4 +180,4 @@ dec_int_id = [A-Za-z_][A-Za-z_0-9]*
 
 /* No token was found for the input so through an error.  Print out an
    Illegal character message with the illegal character that was found. */
-[^]                    { throw new Error("Illegal character <"+yytext()+">"); }
+[^]                    { System.out.print("Illegal character '"+yytext()+"' at line "+(yyline+1)+" column "+(yycolumn+1)+" \n"); }
