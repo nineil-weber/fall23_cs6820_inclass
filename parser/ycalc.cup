@@ -113,6 +113,8 @@ non terminal Integer    expr, factor, term;
   precedence left PLUS, MINUS; 
   precedence left TIMES, DIVIDE; 
 */
+precedence left PLUS, MINUS; 
+precedence left TIMES, DIVIDE;
 
 
 /* ----------------------------Grammar Section-------------------- */
