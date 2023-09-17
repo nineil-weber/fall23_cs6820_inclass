@@ -1,0 +1,24 @@
+import java_cup.runtime.Symbol;
+
+/* Preliminaries to use the scanner.  */
+scan with {: return lexer.next_token(); :};
+parser code {: ExprLex lexer;
+public ExprParser(ExprLex lex) { super(lex); lexer = lex; } :}; 
+
+/* Terminals (tokens returned by lexer). */
+terminal TIMES, DIV;
+terminal PLUS, MINUS;
+terminal LPAREN, RPAREN;
+terminal EOL;
+terminal Integer INT;
+
+non terminal line_list;
+
+start with line_list;
+
+line_list ::= INT:i
+	{: 
+		System.out.println("abcResult-line: " + i); 
+		RESULT = i;
+	:}
+	;
