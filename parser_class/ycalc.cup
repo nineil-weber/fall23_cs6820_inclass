@@ -1,0 +1,52 @@
+import java_cup.runtime.Symbol;
+import java.util.*;
+
+/* Preliminaries to use the scanner.  */
+scan with {: return lexer.next_token(); :};
+parser code {: ExprLex lexer;
+public ExprParser(ExprLex lex) { super(lex); lexer = lex; } :}; 
+
+/* Terminals (tokens returned by lexer). */
+terminal TIMES, DIV;
+terminal PLUS, MINUS;
+terminal LPAREN, RPAREN;
+terminal EOL;
+terminal Integer INT;
+
+non terminal Object line_list;
+non terminal Object line;
+non terminal Integer expr;
+
+precedence left PLUS, MINUS;
+precedence left TIMES, DIV;
+
+start with line_list;
+
+line_list ::= line_list:list line:l
+	| 
+	; 
+line ::= expr:result EOL
+	{: System.out.println(" = " + result); :}
+	|
+	expr:result
+	{: System.out.println(" = " + result); :}
+	;
+
+expr ::= expr:l PLUS expr:r
+	{: RESULT = new Integer(l.intValue() + r.intValue()); :}
+	|
+	expr:l MINUS expr:r
+	{: RESULT = new Integer(l.intValue() - r.intValue()); :}
+	|
+	expr:l DIV expr:r
+	{: RESULT = new Integer(l.intValue() / r.intValue()); :}
+	|
+	expr:l TIMES expr:r
+	{: RESULT = new Integer(l.intValue() * r.intValue()); :}
+	|
+	LPAREN expr:e RPAREN
+	{: RESULT = e; :}
+	|
+	INT:i
+	{: RESULT = i; :}
+;
