@@ -13,8 +13,8 @@ terminal LPAREN, RPAREN;
 terminal EOL;
 terminal Integer INT;
 
-non terminal Object line_list;
-non terminal Object line;
+non terminal line_list;
+non terminal Integer line;
 non terminal Integer expr;
 
 precedence left PLUS, MINUS;
