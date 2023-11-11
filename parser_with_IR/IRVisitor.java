@@ -24,7 +24,7 @@ public class IRVisitor implements Visitor
             arg1 = "" + l;
         else
             arg1 = "t" + l;
-        if(rhs instanceof IntNode || lhs instanceof DoubleNode)
+        if(rhs instanceof IntNode || rhs instanceof DoubleNode)
             arg2 = "" + r;
         else
             arg2 = "t" + r;
@@ -42,7 +42,7 @@ public class IRVisitor implements Visitor
             arg1 = "" + l;
         else
             arg1 = "t" + l;
-        if(rhs instanceof IntNode || lhs instanceof DoubleNode)
+        if(rhs instanceof IntNode || rhs instanceof DoubleNode)
             arg2 = "" + r;
         else
             arg2 = "t" + r;
@@ -61,7 +61,7 @@ public class IRVisitor implements Visitor
             arg1 = "" + l;
         else
             arg1 = "t" + l;
-        if(rhs instanceof IntNode || lhs instanceof DoubleNode)
+        if(rhs instanceof IntNode || rhs instanceof DoubleNode)
             arg2 = "" + r;
         else
             arg2 = "t" + r;
@@ -80,7 +80,7 @@ public class IRVisitor implements Visitor
             arg1 = "" + l;
         else
             arg1 = "t" + l;
-        if(rhs instanceof IntNode || lhs instanceof DoubleNode)
+        if(rhs instanceof IntNode || rhs instanceof DoubleNode)
             arg2 = "" + r;
         else
             arg2 = "t" + r;
@@ -98,7 +98,7 @@ public class IRVisitor implements Visitor
             arg1 = "" + l;
         else
             arg1 = "t" + l;
-        if(rhs instanceof IntNode || lhs instanceof DoubleNode)
+        if(rhs instanceof IntNode || rhs instanceof DoubleNode)
             arg2 = "" + r;
         else
             arg2 = "t" + r;
